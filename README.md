@@ -6,8 +6,7 @@ https://patient-registration-gray.vercel.app/
 
 ## How to run on Your Local System & Installation
 # Must Installed
-- Node.js (v16 or higher)
-- npm (v7 or higher)
+- Node.js
 
 ## Setup :
 1. Clone the repository:
@@ -33,7 +32,7 @@ npm run dev
 
 4. Open your browser and navigate to `http://localhost:5173`
 
-## 📱 Usage Guide
+## How to use :
 
 ### Adding a New Patient
 
@@ -41,13 +40,13 @@ npm run dev
 2. Fill in the required patient information
 3. Click "Register Patient" to save the record
 
-### Running Custom Queries
+### Running Queries
 
 1. Click to the "Query Section" page in navbar
 2. Enter your SQL query in the editor
 3. Click "Search" to run the query and view results
 
-## 🧪 Tech :
+##  Tech Used :
 
 - **React** - UI library
 - **TypeScript** - Type safety and better developer experience
