@@ -1,11 +1,11 @@
 import { PGlite } from '@electric-sql/pglite';
 
-let db = null;
+let db = PGlite || null;
 
-export async function initDatabase()  {
+export async function initDatabase(): Promise<PGlite> {
   if (!db) {
     db = new PGlite();
     await initSchema(db);
   }
-  return db;
+  return db;npm 
 }
