@@ -7,7 +7,7 @@ const Layout: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-950 flex flex-col">
-      <Navbar onMenuClick={() => {}} />
+      
       <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-950 p-4 md:p-6 lg:p-8">
         <div className="max-w-7xl mx-auto">
           {location.pathname === '/' && (
