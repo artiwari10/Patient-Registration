@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { executeQuery } from '../Database/DatabaseService';
-import { useDatabaseContext } from '../Database/DatabaseContext';
+import { useDatabaseContext } from '../Database/DatabaseProvider';
 import { Database } from 'lucide-react';
 
 interface QueryResult {

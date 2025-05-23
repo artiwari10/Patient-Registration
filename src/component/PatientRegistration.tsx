@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { registerPatient } from '../Database/DatabaseService';
-import { useDatabaseContext } from '../Database/DatabaseContext';
+import { useDatabaseContext } from '../Database/DatabaseProvider';
 
 interface PatientFormData {
   first_name: string;
