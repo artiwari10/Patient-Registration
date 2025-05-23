@@ -1,8 +1,11 @@
 import { PGlite } from '@electric-sql/pglite';
-import { worker } from '@electric-sql/pglite/worker';
 
-worker({
-  async init() {
-    return new PGlite('idb://my-pgdata');
-  },
-});
+let db: PGlite | null = null;
+
+export async function initDatabase(): Promise<PGlite> {
+  if (!db) {
+    db = new PGlite();
+    await initSchema(db);
+  }
+  return db;
+}
