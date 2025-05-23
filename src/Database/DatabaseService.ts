@@ -21,7 +21,7 @@ const initSchema = async (database: PGliteWorker) => {
   await database.query(`
     CREATE INDEX IF NOT EXISTS idx_patient_name ON patients (last_name, first_name);
   `);
-  console.log("Database schema initialized");
+  console.log("Created Database schema");
 };
 
 export const initDatabase = async (): Promise<PGliteWorker> => {
@@ -33,14 +33,14 @@ export const initDatabase = async (): Promise<PGliteWorker> => {
       db = new PGliteWorker(workerInstance);
       await initSchema(db);
     } catch (error) {
-      console.error("Failed to initialize database:", error);
+      console.error("Unable to create DB, Error : ", error);
       throw error;
     }
   }
   return db;
 };
 
-export const registerPatient = async (patientData: any): Promise<any> => {
+export const Patient_Register = async (patientData: any): Promise<any> => {
   const database = await initDatabase();
   const {
     first_name,
@@ -78,11 +78,11 @@ export const registerPatient = async (patientData: any): Promise<any> => {
   return result.rows?.[0];
 };
 
-export const getAllPatients = async (): Promise<any[]> => {
+export const get_All_Patients = async (): Promise<any[]> => {
   const database = await initDatabase();
   try {
     const result = await database.query(
-      "SELECT * FROM patients ORDER BY last_name, first_name"
+      "SELECT * FROM patients ORDER BY id"
     );
     return result.rows || [];
   } catch (error) {
@@ -98,8 +98,8 @@ export const searchPatientsByName = async (
    try {
     const result = await database.query(
       `SELECT * FROM patients
-       WHERE first_name ILIKE $1 OR last_name ILIKE $2
-       ORDER BY last_name, first_name`,
+       WHERE first_name LIKE $1 OR last_name LIKE $2
+       ORDER BY id`,
       [`%${searchTerm}%`, `%${searchTerm}%`]
     );
     return result.rows || [];
