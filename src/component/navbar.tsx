@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { UserPlus, Search } from 'lucide-react';
 
-interface NavbarProps {
-  onMenuClick: () => void;
-}
+
 
 const Navbar: React.FC<NavbarProps> = ({ onMenuClick }) => {
   return (
