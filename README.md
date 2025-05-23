@@ -1,54 +1,57 @@
-# React + TypeScript + Vite
+# Patient Management System
+A simple and efficient patient management system that runs entirely in your browser — no backend required! Built using React, TypeScript, and PGlite (an in-browser PostgreSQL engine).
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Live Link :
+https://patient-registration-gray.vercel.app/
 
-Currently, two official plugins are available:
+## How to run on Your Local System & Installation
+# Must Installed
+- Node.js (v16 or higher)
+- npm (v7 or higher)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Setup :
+1. Clone the repository:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+git clone https://github.com/artiwari10/Patient-Registration
+cd Patient-Registration
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+2. Install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+```bash
+npm install
+or
+npm i
 ```
+
+3. Start the development server:
+
+```bash
+npm run dev
+```
+
+4. Open your browser and navigate to `http://localhost:5173`
+
+## 📱 Usage Guide
+
+### Adding a New Patient
+
+1. Click on the Patient Registration in navbar
+2. Fill in the required patient information
+3. Click "Register Patient" to save the record
+
+### Running Custom Queries
+
+1. Click to the "Query Section" page in navbar
+2. Enter your SQL query in the editor
+3. Click "Search" to run the query and view results
+
+## 🧪 Tech :
+
+- **React** - UI library
+- **TypeScript** - Type safety and better developer experience
+- **PGlite** - In-browser PostgreSQL database
+- **React Router** - Application routing
+- **Lucide React** - Icon library
+- **Vite** - Build tool and development server
