@@ -1,46 +1,49 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 import { initDatabase } from './DatabaseService';
 
-type DatabaseContextType = {
+interface IDatabaseContext {
   isLoading: boolean;
   isInitialized: boolean;
   error: string | null;
-};
+}
 
-// Create a context with default fallback values
-const DatabaseContext = createContext<DatabaseContextType>({
+const DatabaseContext = createContext<IDatabaseContext>({
   isLoading: true,
   isInitialized: false,
   error: null,
 });
 
-// Hook to access the context
 export const useDatabaseContext = () => useContext(DatabaseContext);
 
-// Provider component
-export const DatabaseProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+type DatabaseProviderProps = {
+  children: ReactNode;
+};
+
+export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isInitialized, setIsInitialized] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const initialize = async () => {
+    let isMounted = true;
+    (async () => {
       try {
-        try {
-          await initDatabase();
+        await initDatabase();
+        if (isMounted) {
           setIsInitialized(true);
-        } catch (err) {
-          console.error('Database init failed:', err);
-          setError('Database initialization failed. Please refresh the page.');
+          setError(null);
         }
-      } catch (outerErr) {
-        console.error('Unexpected error during DB init:', outerErr);
-        setError('Unexpected error during database initialization.');
+      } catch (e) {
+        if (isMounted) {
+          setError('Database initialization failed. Please try again.');
+        }
       } finally {
-        setIsLoading(false);
+        if (isMounted) setIsLoading(false);
       }
+    })();
+    return () => {
+      isMounted = false;
     };
-    initialize();
   }, []);
 
   return (
