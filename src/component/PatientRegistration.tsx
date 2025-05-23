@@ -54,15 +54,35 @@ const PatientRegistration: React.FC = () => {
 
   const validateForm = (): boolean => {
     const newErrors: Partial<PatientFormData> = {};
+    const phoneRegex = /^\+?\d{10,15}$/; 
     if (!formData.first_name.trim()) newErrors.first_name = 'First name is required';
     if (!formData.last_name.trim()) newErrors.last_name = 'Last name is required';
-    if (!formData.age.trim() || isNaN(Number(formData.age))) newErrors.age = 'Valid age is required';
+
+    const ageNum = Number(formData.age);
+    if (!formData.age.trim() || isNaN(ageNum)) {
+      newErrors.age = 'Valid age is required';
+    } else if (ageNum > 112) {
+      newErrors.age = 'Age cannot be greater than 112';
+    }
+
     if (!formData.gender) newErrors.gender = 'Gender is required';
-    if (!formData.number.trim()) newErrors.number = 'Contact number is required';
+    if (!formData.number.trim()) {
+      newErrors.number = 'Contact number is required';
+    } else if (!phoneRegex.test(formData.number.trim())) {
+      newErrors.number = 'Enter a valid phone number (10-15 digits, may start with +)';
+    }
+
     if (!formData.address.trim()) newErrors.address = 'Address is required';
     if (!formData.symptoms.trim()) newErrors.symptoms = 'Symptoms are required';
+
     if (!formData.relative_name.trim()) newErrors.relative_name = 'Relative name is required';
-    if (!formData.relative_contact.trim()) newErrors.relative_contact = 'Relative contact is required';
+
+    if (!formData.relative_contact.trim()) {
+      newErrors.relative_contact = 'Relative contact is required';
+    } else if (!phoneRegex.test(formData.relative_contact.trim())) {
+      newErrors.relative_contact = 'Enter a valid phone number (10-15 digits, may start with +)';
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
